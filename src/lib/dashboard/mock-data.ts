@@ -36,6 +36,8 @@ export interface Metric {
   threshold?: Threshold;
   action?: string;
   resources: ResourceRow[];
+  /** true when per-resource values are comparable to thresholds (rates, %, latency) */
+  intensive: boolean;
 }
 
 export interface SectionChart {
@@ -165,6 +167,7 @@ function buildMetric(section: string, spec: MetricSpec, f: Filters): Metric {
     threshold: spec.threshold,
     action: spec.action,
     resources: res,
+    intensive: !!spec.perResource,
   };
 }
 

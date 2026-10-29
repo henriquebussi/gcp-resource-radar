@@ -46,7 +46,7 @@ export function DetailDialog({ metric, onClose }: { metric: Metric | null; onClo
                     <TableCell className="font-mono text-xs text-muted-foreground">{r.region}</TableCell>
                     <TableCell className="tabular text-right text-xs">{formatValue(r.value, metric.decimals)} {metric.unit}</TableCell>
                     <TableCell><Progress value={r.share * 100} className="h-1.5" /></TableCell>
-                    <TableCell className="text-right"><AlertBadge severity={evaluate(r.value, metric.threshold && r.share < 1 && !["%", "ms", "s"].includes(metric.unit) ? undefined : metric.threshold)} action={metric.action} /></TableCell>
+                    <TableCell className="text-right"><AlertBadge severity={evaluate(r.value, metric.intensive ? metric.threshold : undefined)} action={metric.action} /></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
